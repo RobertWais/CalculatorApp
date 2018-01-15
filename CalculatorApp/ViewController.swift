@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     var leftVal = ""
     var rightVal = ""
     var result = ""
+    var isDecimal = false
     
     @IBOutlet var answerLabel: UILabel!
     
@@ -40,7 +41,13 @@ class ViewController: UIViewController {
     
     
     @IBAction func numberPressed(sender:UIButton!){
+        let tag = sender.tag
+        if tag == 20 && isDecimal == false {
+            runningNumber += "."
+            isDecimal = true
+        }else if tag != 20{
         runningNumber += "\(sender.tag)"
+        }
         answerLabel.text = runningNumber
     }
     
@@ -60,7 +67,6 @@ class ViewController: UIViewController {
     }
     
     @IBAction func equalPressed(sender: AnyObject){
-        print("Equation: \(leftVal) \(currOperation)  \(rightVal)")
         detectOperation(operation: currOperation)
     }
     
@@ -71,6 +77,7 @@ class ViewController: UIViewController {
         runningNumber = ""
         currOperation = Operation.Empty
         answerLabel.text = "0"
+        isDecimal = false
         
     }
     
@@ -78,6 +85,7 @@ class ViewController: UIViewController {
     
     //enum at top
     func detectOperation(operation: Operation){
+        isDecimal = false
         if currOperation != Operation.Empty {
             
             //A number key has been pressed before hand
