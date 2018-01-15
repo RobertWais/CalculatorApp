@@ -15,9 +15,7 @@ class ViewController: UIViewController {
     var leftVal = ""
     var rightVal = ""
     var result = ""
-    @IBOutlet var secondButton: UIButton!
-
-    @IBOutlet var fristButton: UIButton!
+    
     @IBOutlet var answerLabel: UILabel!
     
     enum Operation: String {
@@ -64,6 +62,16 @@ class ViewController: UIViewController {
     @IBAction func equalPressed(sender: AnyObject){
         print("Equation: \(leftVal) \(currOperation)  \(rightVal)")
         detectOperation(operation: currOperation)
+    }
+    
+
+    @IBAction func clearPressed(sender: AnyObject){
+        rightVal = ""
+        leftVal = ""
+        runningNumber = ""
+        currOperation = Operation.Empty
+        answerLabel.text = "0"
+        
     }
     
     
